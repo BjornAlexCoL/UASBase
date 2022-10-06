@@ -1,0 +1,1007 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UASDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Equipments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Equipment" Type="nvarchar" MaxLength="255" />
+          <Property Name="Serial" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FlightEquipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlightOrderId" Type="int" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
+          <Property Name="Timestamp" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlightOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlightOrderDate" Type="date" Nullable="false" />
+          <Property Name="OperatorId" Type="int" />
+          <Property Name="FlightZoneFile" Type="nvarchar" MaxLength="255" />
+          <Property Name="MissionTypeId" Type="int" />
+          <Property Name="OrderedByUserId" Type="int" Nullable="false" />
+          <Property Name="PilotUserId" Type="int" />
+          <Property Name="FlightDate" Type="date" />
+          <Property Name="ConditionDate" Type="date" />
+          <Property Name="AirSpace" Type="nvarchar" MaxLength="255" />
+          <Property Name="Weather" Type="nvarchar" MaxLength="255" />
+          <Property Name="Temperature" Type="nvarchar" MaxLength="255" />
+          <Property Name="Wind" Type="nvarchar" MaxLength="255" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="AnountOfPictures" Type="int" />
+        </EntityType>
+        <EntityType Name="FlightOrderTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlightOrderId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="Checked" Type="bit" />
+          <Property Name="Timestamp" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MissionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MissionType" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Operators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Operator" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Part" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PilotReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlightOrderId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="Checked" Type="bit" />
+          <Property Name="Minor" Type="bit" />
+          <Property Name="Unacceptable" Type="bit" />
+          <Property Name="LinkTxRx" Type="bit" />
+          <Property Name="Other" Type="bit" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Timestamp" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportDate" Type="date" Nullable="false" />
+          <Property Name="ReportedByUserId" Type="int" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
+          <Property Name="PartId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="RepairedByUserId" Type="int" />
+          <Property Name="RepairDate" Type="date" />
+          <Property Name="MeasureDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TestGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestGroup" Type="nvarchar" MaxLength="255" />
+          <Property Name="InfoText" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestGroupId" Type="int" />
+          <Property Name="Test" Type="nvarchar" MaxLength="255" />
+          <Property Name="PartId" Type="int" />
+          <Property Name="Help" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="255" />
+          <Property Name="LicensNumber" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__FlightEqu__Equip__3F466844">
+          <End Role="Equipments" Type="Self.Equipments" Multiplicity="1" />
+          <End Role="FlightEquipment" Type="Self.FlightEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightEquipment">
+              <PropertyRef Name="EquipmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightEqu__Fligh__3E52440B">
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="1" />
+          <End Role="FlightEquipment" Type="Self.FlightEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightEquipment">
+              <PropertyRef Name="FlightOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Fligh__45F365D3">
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="1" />
+          <End Role="FlightOrderTests" Type="Self.FlightOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrderTests">
+              <PropertyRef Name="FlightOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Missi__398D8EEE">
+          <End Role="MissionTypes" Type="Self.MissionTypes" Multiplicity="0..1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MissionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="MissionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Opera__38996AB5">
+          <End Role="Operators" Type="Self.Operators" Multiplicity="0..1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="OperatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Order__3A81B327">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="OrderedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Pilot__3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="PilotUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__TestI__46E78A0C">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="FlightOrderTests" Type="Self.FlightOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrderTests">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PilotRepo__Fligh__49C3F6B7">
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="1" />
+          <End Role="PilotReports" Type="Self.PilotReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PilotReports">
+              <PropertyRef Name="FlightOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PilotRepo__TestI__4AB81AF0">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="PilotReports" Type="Self.PilotReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PilotReports">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__Equip__31EC6D26">
+          <End Role="Equipments" Type="Self.Equipments" Multiplicity="1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="EquipmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__PartI__32E0915F">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__Repai__33D4B598">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="RepairedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__Repor__30F848ED">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="ReportedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__PartId__2C3393D0">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__TestGroup__2B3F6F97">
+          <End Role="TestGroups" Type="Self.TestGroups" Multiplicity="0..1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="TestGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UASDataModelStoreContainer">
+          <EntitySet Name="Equipments" EntityType="Self.Equipments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlightEquipment" EntityType="Self.FlightEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlightOrders" EntityType="Self.FlightOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlightOrderTests" EntityType="Self.FlightOrderTests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MissionTypes" EntityType="Self.MissionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operators" EntityType="Self.Operators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PilotReports" EntityType="Self.PilotReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceLog" EntityType="Self.ServiceLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestGroups" EntityType="Self.TestGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__FlightEqu__Equip__3F466844" Association="Self.FK__FlightEqu__Equip__3F466844">
+            <End Role="Equipments" EntitySet="Equipments" />
+            <End Role="FlightEquipment" EntitySet="FlightEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightEqu__Fligh__3E52440B" Association="Self.FK__FlightEqu__Fligh__3E52440B">
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+            <End Role="FlightEquipment" EntitySet="FlightEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Fligh__45F365D3" Association="Self.FK__FlightOrd__Fligh__45F365D3">
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+            <End Role="FlightOrderTests" EntitySet="FlightOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Missi__398D8EEE" Association="Self.FK__FlightOrd__Missi__398D8EEE">
+            <End Role="MissionTypes" EntitySet="MissionTypes" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Opera__38996AB5" Association="Self.FK__FlightOrd__Opera__38996AB5">
+            <End Role="Operators" EntitySet="Operators" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Order__3A81B327" Association="Self.FK__FlightOrd__Order__3A81B327">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Pilot__3B75D760" Association="Self.FK__FlightOrd__Pilot__3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__TestI__46E78A0C" Association="Self.FK__FlightOrd__TestI__46E78A0C">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="FlightOrderTests" EntitySet="FlightOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PilotRepo__Fligh__49C3F6B7" Association="Self.FK__PilotRepo__Fligh__49C3F6B7">
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+            <End Role="PilotReports" EntitySet="PilotReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PilotRepo__TestI__4AB81AF0" Association="Self.FK__PilotRepo__TestI__4AB81AF0">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="PilotReports" EntitySet="PilotReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__Equip__31EC6D26" Association="Self.FK__ServiceLo__Equip__31EC6D26">
+            <End Role="Equipments" EntitySet="Equipments" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__PartI__32E0915F" Association="Self.FK__ServiceLo__PartI__32E0915F">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__Repai__33D4B598" Association="Self.FK__ServiceLo__Repai__33D4B598">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__Repor__30F848ED" Association="Self.FK__ServiceLo__Repor__30F848ED">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__PartId__2C3393D0" Association="Self.FK__Tests__PartId__2C3393D0">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__TestGroup__2B3F6F97" Association="Self.FK__Tests__TestGroup__2B3F6F97">
+            <End Role="TestGroups" EntitySet="TestGroups" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UASDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Equipments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Equipment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Serial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FlightEquipment" Relationship="Self.FK__FlightEqu__Equip__3F466844" FromRole="Equipments" ToRole="FlightEquipment" />
+          <NavigationProperty Name="ServiceLog" Relationship="Self.FK__ServiceLo__Equip__31EC6D26" FromRole="Equipments" ToRole="ServiceLog" />
+        </EntityType>
+        <EntityType Name="FlightEquipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlightOrderId" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK__FlightEqu__Equip__3F466844" FromRole="FlightEquipment" ToRole="Equipments" />
+          <NavigationProperty Name="FlightOrders" Relationship="Self.FK__FlightEqu__Fligh__3E52440B" FromRole="FlightEquipment" ToRole="FlightOrders" />
+        </EntityType>
+        <EntityType Name="FlightOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlightOrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OperatorId" Type="Int32" />
+          <Property Name="FlightZoneFile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MissionTypeId" Type="Int32" />
+          <Property Name="OrderedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="PilotUserId" Type="Int32" />
+          <Property Name="FlightDate" Type="DateTime" Precision="0" />
+          <Property Name="ConditionDate" Type="DateTime" Precision="0" />
+          <Property Name="AirSpace" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Weather" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Temperature" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Wind" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="AnountOfPictures" Type="Int32" />
+          <NavigationProperty Name="FlightEquipment" Relationship="Self.FK__FlightEqu__Fligh__3E52440B" FromRole="FlightOrders" ToRole="FlightEquipment" />
+          <NavigationProperty Name="FlightOrderTests" Relationship="Self.FK__FlightOrd__Fligh__45F365D3" FromRole="FlightOrders" ToRole="FlightOrderTests" />
+          <NavigationProperty Name="MissionTypes" Relationship="Self.FK__FlightOrd__Missi__398D8EEE" FromRole="FlightOrders" ToRole="MissionTypes" />
+          <NavigationProperty Name="Operators" Relationship="Self.FK__FlightOrd__Opera__38996AB5" FromRole="FlightOrders" ToRole="Operators" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__FlightOrd__Order__3A81B327" FromRole="FlightOrders" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__FlightOrd__Pilot__3B75D760" FromRole="FlightOrders" ToRole="Users" />
+          <NavigationProperty Name="PilotReports" Relationship="Self.FK__PilotRepo__Fligh__49C3F6B7" FromRole="FlightOrders" ToRole="PilotReports" />
+        </EntityType>
+        <EntityType Name="FlightOrderTests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlightOrderId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <Property Name="Checked" Type="Boolean" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="FlightOrders" Relationship="Self.FK__FlightOrd__Fligh__45F365D3" FromRole="FlightOrderTests" ToRole="FlightOrders" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__FlightOrd__TestI__46E78A0C" FromRole="FlightOrderTests" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="MissionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MissionType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FlightOrders" Relationship="Self.FK__FlightOrd__Missi__398D8EEE" FromRole="MissionTypes" ToRole="FlightOrders" />
+        </EntityType>
+        <EntityType Name="Operators">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Operator" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FlightOrders" Relationship="Self.FK__FlightOrd__Opera__38996AB5" FromRole="Operators" ToRole="FlightOrders" />
+        </EntityType>
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Part" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ServiceLog" Relationship="Self.FK__ServiceLo__PartI__32E0915F" FromRole="Parts" ToRole="ServiceLog" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__Tests__PartId__2C3393D0" FromRole="Parts" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="PilotReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlightOrderId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <Property Name="Checked" Type="Boolean" />
+          <Property Name="Minor" Type="Boolean" />
+          <Property Name="Unacceptable" Type="Boolean" />
+          <Property Name="LinkTxRx" Type="Boolean" />
+          <Property Name="Other" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="FlightOrders" Relationship="Self.FK__PilotRepo__Fligh__49C3F6B7" FromRole="PilotReports" ToRole="FlightOrders" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__PilotRepo__TestI__4AB81AF0" FromRole="PilotReports" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="ServiceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReportedByUserId" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+          <Property Name="PartId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RepairedByUserId" Type="Int32" />
+          <Property Name="RepairDate" Type="DateTime" Precision="0" />
+          <Property Name="MeasureDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK__ServiceLo__Equip__31EC6D26" FromRole="ServiceLog" ToRole="Equipments" />
+          <NavigationProperty Name="Parts" Relationship="Self.FK__ServiceLo__PartI__32E0915F" FromRole="ServiceLog" ToRole="Parts" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__ServiceLo__Repai__33D4B598" FromRole="ServiceLog" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__ServiceLo__Repor__30F848ED" FromRole="ServiceLog" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TestGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestGroup" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="InfoText" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tests" Relationship="Self.FK__Tests__TestGroup__2B3F6F97" FromRole="TestGroups" ToRole="Tests" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestGroupId" Type="Int32" />
+          <Property Name="Test" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PartId" Type="Int32" />
+          <Property Name="Help" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FlightOrderTests" Relationship="Self.FK__FlightOrd__TestI__46E78A0C" FromRole="Tests" ToRole="FlightOrderTests" />
+          <NavigationProperty Name="Parts" Relationship="Self.FK__Tests__PartId__2C3393D0" FromRole="Tests" ToRole="Parts" />
+          <NavigationProperty Name="PilotReports" Relationship="Self.FK__PilotRepo__TestI__4AB81AF0" FromRole="Tests" ToRole="PilotReports" />
+          <NavigationProperty Name="TestGroups" Relationship="Self.FK__Tests__TestGroup__2B3F6F97" FromRole="Tests" ToRole="TestGroups" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LicensNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FlightOrders" Relationship="Self.FK__FlightOrd__Order__3A81B327" FromRole="Users" ToRole="FlightOrders" />
+          <NavigationProperty Name="FlightOrders1" Relationship="Self.FK__FlightOrd__Pilot__3B75D760" FromRole="Users" ToRole="FlightOrders" />
+          <NavigationProperty Name="ServiceLog" Relationship="Self.FK__ServiceLo__Repai__33D4B598" FromRole="Users" ToRole="ServiceLog" />
+          <NavigationProperty Name="ServiceLog1" Relationship="Self.FK__ServiceLo__Repor__30F848ED" FromRole="Users" ToRole="ServiceLog" />
+        </EntityType>
+        <Association Name="FK__FlightEqu__Equip__3F466844">
+          <End Role="Equipments" Type="Self.Equipments" Multiplicity="1" />
+          <End Role="FlightEquipment" Type="Self.FlightEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightEquipment">
+              <PropertyRef Name="EquipmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__Equip__31EC6D26">
+          <End Role="Equipments" Type="Self.Equipments" Multiplicity="1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="EquipmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightEqu__Fligh__3E52440B">
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="1" />
+          <End Role="FlightEquipment" Type="Self.FlightEquipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightEquipment">
+              <PropertyRef Name="FlightOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Fligh__45F365D3">
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="1" />
+          <End Role="FlightOrderTests" Type="Self.FlightOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrderTests">
+              <PropertyRef Name="FlightOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Missi__398D8EEE">
+          <End Role="MissionTypes" Type="Self.MissionTypes" Multiplicity="0..1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MissionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="MissionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Opera__38996AB5">
+          <End Role="Operators" Type="Self.Operators" Multiplicity="0..1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operators">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="OperatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Order__3A81B327">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="OrderedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__Pilot__3B75D760">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrders">
+              <PropertyRef Name="PilotUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PilotRepo__Fligh__49C3F6B7">
+          <End Role="FlightOrders" Type="Self.FlightOrders" Multiplicity="1" />
+          <End Role="PilotReports" Type="Self.PilotReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PilotReports">
+              <PropertyRef Name="FlightOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FlightOrd__TestI__46E78A0C">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="FlightOrderTests" Type="Self.FlightOrderTests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FlightOrderTests">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__PartI__32E0915F">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__PartId__2C3393D0">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="PartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PilotRepo__TestI__4AB81AF0">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="PilotReports" Type="Self.PilotReports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PilotReports">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__Repai__33D4B598">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="RepairedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceLo__Repor__30F848ED">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ServiceLog" Type="Self.ServiceLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLog">
+              <PropertyRef Name="ReportedByUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tests__TestGroup__2B3F6F97">
+          <End Role="TestGroups" Type="Self.TestGroups" Multiplicity="0..1" />
+          <End Role="Tests" Type="Self.Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tests">
+              <PropertyRef Name="TestGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UASDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Equipments" EntityType="Self.Equipments" />
+          <EntitySet Name="FlightEquipment" EntityType="Self.FlightEquipment" />
+          <EntitySet Name="FlightOrders" EntityType="Self.FlightOrders" />
+          <EntitySet Name="FlightOrderTests" EntityType="Self.FlightOrderTests" />
+          <EntitySet Name="MissionTypes" EntityType="Self.MissionTypes" />
+          <EntitySet Name="Operators" EntityType="Self.Operators" />
+          <EntitySet Name="Parts" EntityType="Self.Parts" />
+          <EntitySet Name="PilotReports" EntityType="Self.PilotReports" />
+          <EntitySet Name="ServiceLog" EntityType="Self.ServiceLog" />
+          <EntitySet Name="TestGroups" EntityType="Self.TestGroups" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__FlightEqu__Equip__3F466844" Association="Self.FK__FlightEqu__Equip__3F466844">
+            <End Role="Equipments" EntitySet="Equipments" />
+            <End Role="FlightEquipment" EntitySet="FlightEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__Equip__31EC6D26" Association="Self.FK__ServiceLo__Equip__31EC6D26">
+            <End Role="Equipments" EntitySet="Equipments" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightEqu__Fligh__3E52440B" Association="Self.FK__FlightEqu__Fligh__3E52440B">
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+            <End Role="FlightEquipment" EntitySet="FlightEquipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Fligh__45F365D3" Association="Self.FK__FlightOrd__Fligh__45F365D3">
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+            <End Role="FlightOrderTests" EntitySet="FlightOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Missi__398D8EEE" Association="Self.FK__FlightOrd__Missi__398D8EEE">
+            <End Role="MissionTypes" EntitySet="MissionTypes" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Opera__38996AB5" Association="Self.FK__FlightOrd__Opera__38996AB5">
+            <End Role="Operators" EntitySet="Operators" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Order__3A81B327" Association="Self.FK__FlightOrd__Order__3A81B327">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__Pilot__3B75D760" Association="Self.FK__FlightOrd__Pilot__3B75D760">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PilotRepo__Fligh__49C3F6B7" Association="Self.FK__PilotRepo__Fligh__49C3F6B7">
+            <End Role="FlightOrders" EntitySet="FlightOrders" />
+            <End Role="PilotReports" EntitySet="PilotReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FlightOrd__TestI__46E78A0C" Association="Self.FK__FlightOrd__TestI__46E78A0C">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="FlightOrderTests" EntitySet="FlightOrderTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__PartI__32E0915F" Association="Self.FK__ServiceLo__PartI__32E0915F">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__PartId__2C3393D0" Association="Self.FK__Tests__PartId__2C3393D0">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PilotRepo__TestI__4AB81AF0" Association="Self.FK__PilotRepo__TestI__4AB81AF0">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="PilotReports" EntitySet="PilotReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__Repai__33D4B598" Association="Self.FK__ServiceLo__Repai__33D4B598">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceLo__Repor__30F848ED" Association="Self.FK__ServiceLo__Repor__30F848ED">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ServiceLog" EntitySet="ServiceLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tests__TestGroup__2B3F6F97" Association="Self.FK__Tests__TestGroup__2B3F6F97">
+            <End Role="TestGroups" EntitySet="TestGroups" />
+            <End Role="Tests" EntitySet="Tests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UASDataModelStoreContainer" CdmEntityContainer="UASDataEntities">
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="UASDataModel.Equipments">
+              <MappingFragment StoreEntitySet="Equipments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+                <ScalarProperty Name="Serial" ColumnName="Serial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlightEquipment">
+            <EntityTypeMapping TypeName="UASDataModel.FlightEquipment">
+              <MappingFragment StoreEntitySet="FlightEquipment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FlightOrderId" ColumnName="FlightOrderId" />
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlightOrders">
+            <EntityTypeMapping TypeName="UASDataModel.FlightOrders">
+              <MappingFragment StoreEntitySet="FlightOrders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FlightOrderDate" ColumnName="FlightOrderDate" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="FlightZoneFile" ColumnName="FlightZoneFile" />
+                <ScalarProperty Name="MissionTypeId" ColumnName="MissionTypeId" />
+                <ScalarProperty Name="OrderedByUserId" ColumnName="OrderedByUserId" />
+                <ScalarProperty Name="PilotUserId" ColumnName="PilotUserId" />
+                <ScalarProperty Name="FlightDate" ColumnName="FlightDate" />
+                <ScalarProperty Name="ConditionDate" ColumnName="ConditionDate" />
+                <ScalarProperty Name="AirSpace" ColumnName="AirSpace" />
+                <ScalarProperty Name="Weather" ColumnName="Weather" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Wind" ColumnName="Wind" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="AnountOfPictures" ColumnName="AnountOfPictures" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlightOrderTests">
+            <EntityTypeMapping TypeName="UASDataModel.FlightOrderTests">
+              <MappingFragment StoreEntitySet="FlightOrderTests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FlightOrderId" ColumnName="FlightOrderId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MissionTypes">
+            <EntityTypeMapping TypeName="UASDataModel.MissionTypes">
+              <MappingFragment StoreEntitySet="MissionTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MissionType" ColumnName="MissionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operators">
+            <EntityTypeMapping TypeName="UASDataModel.Operators">
+              <MappingFragment StoreEntitySet="Operators">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="UASDataModel.Parts">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Part" ColumnName="Part" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PilotReports">
+            <EntityTypeMapping TypeName="UASDataModel.PilotReports">
+              <MappingFragment StoreEntitySet="PilotReports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FlightOrderId" ColumnName="FlightOrderId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="Minor" ColumnName="Minor" />
+                <ScalarProperty Name="Unacceptable" ColumnName="Unacceptable" />
+                <ScalarProperty Name="LinkTxRx" ColumnName="LinkTxRx" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceLog">
+            <EntityTypeMapping TypeName="UASDataModel.ServiceLog">
+              <MappingFragment StoreEntitySet="ServiceLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ReportedByUserId" ColumnName="ReportedByUserId" />
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RepairedByUserId" ColumnName="RepairedByUserId" />
+                <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
+                <ScalarProperty Name="MeasureDescription" ColumnName="MeasureDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestGroups">
+            <EntityTypeMapping TypeName="UASDataModel.TestGroups">
+              <MappingFragment StoreEntitySet="TestGroups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestGroup" ColumnName="TestGroup" />
+                <ScalarProperty Name="InfoText" ColumnName="InfoText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="UASDataModel.Tests">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestGroupId" ColumnName="TestGroupId" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="Help" ColumnName="Help" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="UASDataModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="LicensNumber" ColumnName="LicensNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
