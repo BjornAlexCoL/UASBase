@@ -1,0 +1,94 @@
+1	6	Programs Updated		
+2	6	Route/Area Planned		
+3	6	Obstracles		
+4	6	Storyboard/Picture List		
+5	6	Permits		
+6	6	NOTAM/AIP/DUP		
+7	6	Controls Charged		
+8	6	Groundstation Charged		
+9	6	Material Packed		
+10	6	First Aid Packed		
+11	1	Aircraft		
+12	1	Remote Controller		
+13	1	Payloads		
+14	1	Batteries		
+15	2	Propellers	1	
+16	2	Frame Arms	2	
+17	2	Arm Junctions	3	
+18	2	Landing Gears	4	
+19	2	Armjunction	5	
+20	2	Battery Lock	6	
+21	2	Rubber Port Covers	7	
+22	2	Cooling Fan	8	
+23	3	Firmly Installed	9	Rotate the motors manually to check if they are firmly installed!
+24	3	Noice	9	Listen for noise.
+25	3	Gap	9	No gap between motors and base.
+26	3	Propellers	9	Mounted propellers are mounted correctly.
+27	3	CCW Propellers	9	CCW propellers should be on motor 1 and 3.
+28	3	CW Propellers	9	CW propellers should be on motor 2 and 4.
+29	4	Foregin Object	10	No foreign object in the battery port.
+30	4	Misshappen Port	10	The port is not misshapen.
+31	4	Locker	11	Battery locker is secure and will not come loose.
+32	4	Damage	12	No visible damage on battery.
+33	5	Remote Controller	26	All the antennas on the aircraft and remote controller are tightened firmly and free of damage.
+34	5	Aircraft	27	Antennas are free of contact with the rotating propellers.
+35	5	Free of Contact		Antennas are free of contact with the rotating propellers.
+36	8	Centered Sticks	14	Control sticks are centered in neutral position.
+37	8	Foreign Object	13	No foreign object (E.g., sand or soil)
+38	8	Full Ranges	13	Full ranges of motion in all channels.
+39	8	Screen	15	Screen on the remote controller is clean and dry.
+40	7	Lenses	18	Contact DJI Support if the lenses are damaged.
+41	7	Sensing	21	
+42	10	Intact	23	The gimbal appears intact.
+43	9	Lenses	18	Contact DJI Support if the lenses are damaged.
+44	9	Vision System	16	
+45	9	Lights	17	
+46	10	Rotation	24	Gimbal can rotate smoothly in all the three axes.
+47	10	Lens	18	The lens in clean.
+48	10	Dampeners	19	Dampeners have no crack or split.
+49	10	Anti-drop rope	20	Anti-drop rope is not damaged and secure.
+50	10	Connector	22	Gimbal connector is secure.
+51	13	Batteries Fully Charged	11	All batteries, including Intelligent Flight Batteries and remote controller batteries, are fully charged.
+52	13	Battery Level and Voltage	11	Check the battery level and voltage of each battery cell in the battery page in the app to make sure they are normal.
+53	13	Top Cooling Fan	8	Check by careful touching or listening that the fans are operating normally and without abnormal noise.
+54	13	Bottom Cooling Fan	8	Check by careful touching or listening that the fans are operating normally and without abnormal noise.
+55	13	RC UAV Bound	13	Bind the remote controller and aircraft.
+56	13	CSC Test	13	Perform a CSC - Combination Stick Command - to start the motors. NOTE: Stay away from the spinning motors and propellers to avoid injuries during the test.
+57	13	No Motor Noise	9	Motors start without noise.
+58	13	No AppError	9	No error prompt in the app.
+59	13	CCW Propeller Observe	9	Observe the motors to ensure that motors 1 and 3 rotate counterclockwise. Perform this check either when starting or stopping the motors.
+60	13	CW Propeller Observe	9	Observe the motors to ensure that motors 2 and 4 rotate clockwise. Perform this check either when starting or stopping the motors.
+61	11	Control Stick Calibration	13	Check in the control stick calibration page.
+62	11	Control Lever Proportion	13	Proportion of control lever is correct.
+63	11	Power check	13	Remote controller has sufficient power.
+64	11	Battery	13	Battery is firmly installed.
+65	11	Channel Automatic or Custom		Confirm that the channel used is automatic or custom.
+66	11	Operation Channel		Choose the operation frequency and channel according to the signal to noise ration.
+67	11	Operation Frequency		Choose the operation frequency and channel according to the signal to noise ration.
+68	12	IMU Data on Map		Data on each IMU is shown in the app.
+69	12	IMU Perfromance		IMU can be performed successfully.
+70	12	Compass Heading		The heading of the compass matches the physical one.
+71	12	Compass Needle		Compass needle is stable.
+72	12	Compass Calibration		Compass calibration can be performed successfully
+73	12	Vision System		Vision System in all directions are enabled with no error prompt.
+74	14	Failsafe-action		 "Failsafe"-action of the aircraft is what fits your mission.
+75	14	Obstractle		 Obstacle sensing function are setup correctly.
+76	14	Auto-Check information		 View the module auto-check information for errors.
+77	14	GNSS Positioning		 GNSS Positioning - There are at least 10 satellites and the aircraft works in P-mode. 
+78	14	RTH Enabled		 Enable RTK function.
+79	14	Base station selected		 Select the correct base station and channel.
+80	14	Channel Selekted		 Select the correct base station and channel.
+81	14	RTH Positioning		 Make sure that RTK positioning is in use.
+82	14	RTH Heading Fixed		 Check the RTK page if the heading and positioning are fixed.
+83	14	RTH Positioning Fixed		 Check the RTK page if the heading and positioning are fixed.
+84	15	Start Controller		
+85	15	Start UAV		
+86	15	Start Recording		
+87	15	Hover for 20 sec		
+88	15	Fan Noise	8	
+89	15	Motor Noise	9	
+90	15	Propeller Noise	1	
+91	16	Deficiency		
+92	16	Damage		
+93	16	Interference		
+94	16	Other		

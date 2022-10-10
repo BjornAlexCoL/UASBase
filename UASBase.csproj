@@ -187,9 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\UASData.mdf" />
-    <Content Include="App_Data\UASData_log.ldf">
-      <DependentUpon>UASData.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -217,6 +214,9 @@
     <Content Include="Models\UASDataEntities.edmx.diagram">
       <DependentUpon>UASDataEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Data\Parts.csv" />
+    <Content Include="App_Data\TestGroups.csv" />
+    <Content Include="App_Data\Tests.csv" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
